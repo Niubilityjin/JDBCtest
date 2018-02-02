@@ -20,7 +20,6 @@ public class MainDemo1 {
 				System.out.println(id+"---"+str);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtils.closeConnection(conn);

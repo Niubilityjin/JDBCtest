@@ -38,7 +38,7 @@ public class DBUtils {
 				Connection conn=DriverManager.getConnection(url, userName, password);
 				return conn;
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+			
 				e.printStackTrace();
 			}
 			return null;
@@ -48,7 +48,7 @@ public class DBUtils {
 				try {
 					conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+				
 					e.printStackTrace();
 				}
 			}
