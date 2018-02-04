@@ -7,13 +7,20 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import org.apache.commons.dbcp.BasicDataSource;
+
 public class DBUtils {
 	//由于一个项目中这四个变量只被赋值一次
 		//使用静态变量
-		static String driver;
-		static String url;
-		static String userName;
-		static String password;
+		private static String driver;
+		private static String url;
+		private static String userName;
+		private static String password;
+		//两个策略参数
+		private static int initialSize;
+		private static int maxActive;
+		//声明BasicDataSource对象,赋值为null
+		private static BasicDataSource ds=null;
 		//在程序一运行就开始加载 使用静态块
 		static{
 			try {
@@ -27,15 +34,24 @@ public class DBUtils {
 				url=cfg.getProperty("jdbc.url");
 				userName=cfg.getProperty("jdbc.userName");
 				password=cfg.getProperty("jdbc.password");
-			} catch (IOException e) {
+				initialSize=Integer.parseInt(cfg.getProperty("initialSize"));
+				maxActive=Integer.parseInt(cfg.getProperty("maxActive"));
+				//创建管理员对象
+				ds=new BasicDataSource();
+				ds.setDriverClassName(driver);
+				ds.setUrl(url);
+				ds.setUsername(userName);
+				ds.setPassword(password);
+				ds.setInitialSize(initialSize);
+				ds.setMaxActive(maxActive);
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		public static Connection getConnection(){
 			try {
-				Class.forName(driver);//注册驱动
-				Connection conn=DriverManager.getConnection(url, userName, password);
+				Connection conn=ds.getConnection();
 				return conn;
 			} catch (Exception e) {
 			
