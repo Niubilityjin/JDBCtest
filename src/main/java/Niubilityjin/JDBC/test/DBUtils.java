@@ -1,9 +1,7 @@
 package Niubilityjin.JDBC.test;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -62,9 +60,19 @@ public class DBUtils {
 		public static void closeConnection(Connection conn){
 			if(conn!=null){
 				try {
+					conn.setAutoCommit(true);
 					conn.close();
 				} catch (SQLException e) {
 				
+					e.printStackTrace();
+				}
+			}
+		}
+		public static void rollback(Connection conn){
+			if(conn!=null){
+				try {
+					conn.rollback();
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
