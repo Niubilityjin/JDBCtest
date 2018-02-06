@@ -11,4 +11,7 @@ MySQL Connect JAVA
 
 
 JDBCSimpleBankSystemTest实现了一个简易的事务中的银行转账业务,关闭自动提交功能后扣款和增款行为都变得可控,任何一个行为出错我都设计了一个throw手动抛出异常,程序直接进行catch,并执行catch中的回滚,当增款和减款都正常发生后,程序判断借款人余额是否为负数,当不为负数时,commit,转账成功
+
+ 
+AutoKeys实现了自动设置两张表的主外键关联,从一张表中用getGeneratedKeys()方法获取自增长主键后直接作为外键插入另一张表中,从此两张表形成关联.
  
