@@ -24,7 +24,7 @@ public class AutoKeys {
 			//ps一执行,自增的id值
 			//就返回到ps对象中保存
 			ps.executeUpdate();
-			//获取自增长的值
+			//获取自增长的值.
 			ResultSet rs=ps.getGeneratedKeys();
 			int id=0;
 			while(rs.next()){
