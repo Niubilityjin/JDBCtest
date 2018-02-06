@@ -34,7 +34,7 @@ public class AutoKeys {
 			ps.close();
 			String sql2="insert into post values(null,?,?)";
 			ps=conn.prepareStatement(sql2);
-			ps.setString(1, "今天天气很冷,晚上又雾霾");
+			ps.setString(1, "今天天气很冷,晚上又雾霾,");
 			ps.setInt(2, id);
 			int n=ps.executeUpdate();
 			if(n!=1){
